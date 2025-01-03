@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "702583657846",
+    "project_id": "webqr-f48b3",
+    "storage_bucket": "webqr-f48b3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702583657846:android:86d07c15500a2b6c06d657",
+        "android_client_info": {
+          "package_name": "com.webqr.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0NrSLwCJa23QnkKiN-Bn9YM1X850ps1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
