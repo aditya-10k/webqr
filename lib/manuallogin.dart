@@ -1,21 +1,29 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:webqr/auth.dart';
 import 'package:webqr/homepage.dart';
 
 class Manuallogin extends StatefulWidget {
-   Manuallogin({super.key});
+  Manuallogin({super.key});
 
   @override
   State<Manuallogin> createState() => _ManualloginState();
 }
 
 class _ManualloginState extends State<Manuallogin> {
-
-  String? errorMessage='';
+  String? errorMessage = '';
   bool isLogin = false;
 
-  final TextEditingController _emailController = TextEditingController(); 
-  final TextEditingController _passwordController = TextEditingController();  
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   Future<void> login() async {
     try {
@@ -23,7 +31,10 @@ class _ManualloginState extends State<Manuallogin> {
         email: _emailController.text,
         password: _passwordController.text,
       );
-      Navigator.push(context , MaterialPageRoute(builder: (context) => const Homepage()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Homepage()),
+      );
       setState(() {
         isLogin = true;
       });
@@ -34,8 +45,9 @@ class _ManualloginState extends State<Manuallogin> {
     }
   }
 
+  // TextFormField widget to avoid duplicate code
   Widget _entryField(String title, TextEditingController controller) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       decoration: InputDecoration(
         labelText: title,
@@ -65,11 +77,12 @@ class _ManualloginState extends State<Manuallogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login',
-        style: TextStyle(
-          color: Colors.black,
-          
-        ),),
+        title: const Text(
+          'Login',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Center(
@@ -82,17 +95,15 @@ class _ManualloginState extends State<Manuallogin> {
             color: Colors.grey[200],
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children:  [
-                //Text('Login Page'),
+              children: [
                 _entryField('Email', _emailController),
                 SizedBox(height: 20),
                 _entryField('Password', _passwordController),
                 SizedBox(height: 20),
+                _entryField('Name', _nameController),
                 _errorMessage(),
                 SizedBox(height: 20),
                 _submitButton(),
-
-                
               ],
             ),
           ),
@@ -101,3 +112,6 @@ class _ManualloginState extends State<Manuallogin> {
     );
   }
 }
+
+
+
